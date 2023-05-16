@@ -14,16 +14,16 @@ import { useForm } from 'react-hook-form'
 import { FcGoogle } from 'react-icons/fc'
 import { NavLink } from 'react-router-dom'
 
-import { registerUser } from '../../services/auth'
+import { loginWithEmail } from '../../services/auth'
 
-export const Register = () => {
+export const Login = () => {
   const { register, handleSubmit, formState } = useForm()
 
   const { errors } = formState
 
   const onSubmit = async (data) => {
     try {
-      const user = await registerUser(data)
+      const user = await loginWithEmail(data)
       console.log(user)
     } catch (error) {
       console.error(error)
@@ -31,11 +31,26 @@ export const Register = () => {
   }
 
   return (
-    <SimpleGrid h="100vh" templateColumns={{ base: '1fr', md: '1fr 1fr' }}>
+    <SimpleGrid
+      h="100vh"
+      templateColumns={{ base: '1fr', md: '1fr 1fr' }}
+      position="relative"
+    >
       <Flex justifyContent="center" align="center" p={2}>
+        <Button
+          position="absolute"
+          top="4"
+          left="4"
+          as={NavLink}
+          fontWeight="semibold"
+          to="/"
+          _hover={{ color: '#BE3969' }}
+        >
+          Volver
+        </Button>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Heading as="h1" mb={4} color="#BE3969" textAlign="center">
-            Crear cuenta
+            Iniciar Sesión
           </Heading>
           <Button type="button" mb={4} w="full">
             <Link mr={2}>
@@ -77,16 +92,16 @@ export const Register = () => {
             />
             <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
             <Button type="submit" mt={4} w="full">
-              Crear Cuenta
+              Iniciar Sesión
             </Button>
             <Flex justifyContent="center" mt={3}>
               <Link
                 as={NavLink}
                 fontWeight="semibold"
-                to="/iniciar-sesion"
+                to="/registro"
                 _hover={{ color: '#BE3969' }}
               >
-                Iniciar Sesión
+                Registrarse
               </Link>
             </Flex>
           </FormControl>

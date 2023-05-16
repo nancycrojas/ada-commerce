@@ -22,7 +22,7 @@ export const loginWithEmail = async ({ email, password }) => {
   }
 }
 
-export const register = async ({ email, password }) => {
+export const registerUser = async ({ email, password }) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
