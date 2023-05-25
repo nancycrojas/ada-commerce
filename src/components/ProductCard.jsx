@@ -19,9 +19,13 @@ export const ProductCard = ({ product }) => {
       <CardBody>
         <Image src={image} alt={name} borderRadius="lg" />
         <Stack mt="6" spacing="3">
-          <Heading size="md">{name}</Heading>
-          <Text>{description}</Text>
-          <Text color="blue.600" fontSize="2xl">
+          <Heading size="md" fontWeight={400}>
+            {name}
+          </Heading>
+          <Text fontWeight={300} fontSize="lg">
+            {description}
+          </Text>
+          <Text fontWeight={300} fontSize="2xl">
             ${price}
           </Text>
         </Stack>
@@ -29,10 +33,21 @@ export const ProductCard = ({ product }) => {
       <Divider />
       <CardFooter>
         <ButtonGroup spacing="2">
-          <Button as={Link} to={id} variant="solid" colorScheme="blue">
+          <Button
+            as={Link}
+            to={id}
+            variant="solid"
+            bg="black"
+            color="white"
+            textTransform="uppercase"
+            _hover={{
+              transform: 'translateY(1px)',
+              boxShadow: 'lg',
+            }}
+          >
             Ver Detalles
           </Button>
-          <Button variant="ghost" colorScheme="blue">
+          <Button variant="ghost" color="#BE3969">
             Agregar al carrito
           </Button>
         </ButtonGroup>

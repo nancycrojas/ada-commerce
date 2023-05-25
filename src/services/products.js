@@ -1,4 +1,4 @@
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
 
 import { db } from '../firebase/config'
 
@@ -8,14 +8,23 @@ export const getAllProducts = async () => {
   let products = []
 
   data.forEach((doc) => {
-    // console.log(`${doc.id} => ${doc.data()}`)
-    // console.log(doc.data(), doc.id)
-
     products.push({
       ...doc.data(),
       id: doc.id,
     })
   })
-  //   console.log(products)
   return products
+}
+
+export const getProductById = async (id) => {
+  const docRef = doc(db, 'products', id)
+  const docSnap = await getDoc(docRef)
+
+  if (docSnap.exists()) {
+    const productData = docSnap.data()
+    const product = { ...productData, id: docSnap.id }
+    return product
+  } else {
+    throw new Error('El producto no existe')
+  }
 }

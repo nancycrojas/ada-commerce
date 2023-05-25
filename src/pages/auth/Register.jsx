@@ -19,7 +19,7 @@ import { registerUser } from '../../services/auth'
 export const Register = () => {
   const { register, handleSubmit, formState } = useForm()
 
-  const { errors } = formState
+  const { errors, isSubmitting } = formState
 
   const onSubmit = async (data) => {
     try {
@@ -76,7 +76,7 @@ export const Register = () => {
               })}
             />
             <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
-            <Button type="submit" mt={4} w="full">
+            <Button type="submit" mt={4} w="full" isLoading={isSubmitting}>
               Crear Cuenta
             </Button>
             <Flex justifyContent="center" mt={3}>
