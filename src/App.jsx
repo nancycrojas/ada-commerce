@@ -1,5 +1,8 @@
+import { useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
+import { IsLoading } from './components/IsLoading'
+import { UserContext } from './context/UserContext'
 import { AppLayout } from './layouts/AppLayout'
 import { AuthLayout } from './layouts/AuthLayout'
 import { NotFoundLayout } from './layouts/NotFoundLayout'
@@ -11,6 +14,10 @@ import { ProductDetails } from './pages/ProductDetails'
 import { Products } from './pages/Products'
 
 function App() {
+  const { isLoading } = useContext(UserContext)
+
+  if (isLoading) return <IsLoading />
+
   return (
     <Routes>
       <Route element={<AppLayout />}>

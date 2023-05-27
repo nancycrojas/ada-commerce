@@ -1,6 +1,7 @@
-import { Flex, Spinner, Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
+import { IsLoading } from '../components/IsLoading'
 import { ProductCard } from '../components/ProductCard'
 import { getAllProducts } from '../services/products'
 
@@ -26,23 +27,7 @@ export const Products = () => {
   return (
     <Flex flexWrap="wrap" justifyContent="center" gap={4} m={6}>
       {error && <Text>Ha ocurrido un error</Text>}
-      {loading && (
-        <Flex
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          gap={2}
-        >
-          <Spinner
-            thickness="3px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="pink.600"
-            size="lg"
-          />
-          <Text>Cargando ...</Text>
-        </Flex>
-      )}
+      {loading && <IsLoading />}
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

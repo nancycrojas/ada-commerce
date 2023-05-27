@@ -8,6 +8,7 @@ export const UserContext = createContext()
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [userLoading, setUserLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -24,6 +25,7 @@ export const UserProvider = ({ children }) => {
         setUserLoading(false)
         console.log('no esta logueado')
       }
+      setIsLoading(false)
     })
   }, [])
 
@@ -38,7 +40,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, handleLogin, handleLogout, userLoading }}
+      value={{ user, handleLogin, handleLogout, userLoading, isLoading }}
     >
       {children}
     </UserContext.Provider>

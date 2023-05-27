@@ -9,10 +9,11 @@ import {
   Input,
   Link,
   SimpleGrid,
+  useToast,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { FcGoogle } from 'react-icons/fc'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 import { registerUser } from '../../services/auth'
 
@@ -20,13 +21,34 @@ export const Register = () => {
   const { register, handleSubmit, formState } = useForm()
 
   const { errors, isSubmitting } = formState
+  const navigate = useNavigate()
+  const toast = useToast()
 
   const onSubmit = async (data) => {
     try {
       const user = await registerUser(data)
       console.log(user)
+      if (user) {
+        navigate('/')
+        toast({
+          title: 'Cuenta creada exitosamente',
+          status: 'success',
+          colorScheme: 'pink',
+          duration: 2500,
+          isClosable: false,
+        })
+      } else {
+        throw new Error('Error al crear la cuenta')
+      }
     } catch (error) {
       console.error(error)
+      toast({
+        title: 'Error al crear la cuenta',
+        status: 'error',
+        colorScheme: 'pink',
+        duration: 2500,
+        isClosable: false,
+      })
     }
   }
 

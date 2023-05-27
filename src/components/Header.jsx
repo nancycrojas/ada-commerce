@@ -8,6 +8,8 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Portal,
+  useDisclosure,
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { BsBagHeart } from 'react-icons/bs'
@@ -15,9 +17,11 @@ import { FaUserAlt } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 
 import { UserContext } from '../context/UserContext'
+import { CartDrawer } from './CartDrawer'
 
 export const Header = () => {
   const { user, handleLogout } = useContext(UserContext)
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <HStack justifyContent="space-between" p={4}>
@@ -54,18 +58,23 @@ export const Header = () => {
             <MenuButton as={Button}>
               <FaUserAlt size={15} />
             </MenuButton>
-            <MenuList>
-              <MenuItem>Mis Pedidos</MenuItem>
-              <MenuItem onClick={() => handleLogout()}>Cerrar Sesión</MenuItem>
-            </MenuList>
+            <Portal>
+              <MenuList>
+                <MenuItem>Mis Pedidos</MenuItem>
+                <MenuItem onClick={() => handleLogout()}>
+                  Cerrar Sesión
+                </MenuItem>
+              </MenuList>
+            </Portal>
           </Menu>
         )}
-        <IconButton>
-          <Link as={NavLink} to="/carrito" _hover={{ color: '#BE3969' }}>
-            <BsBagHeart size={20} />
-          </Link>
-        </IconButton>
+        <IconButton
+          _hover={{ color: '#BE3969' }}
+          icon={<BsBagHeart size={20} />}
+          onClick={onOpen}
+        />
       </HStack>
+      <CartDrawer isOpen={isOpen} onClose={onClose} />
     </HStack>
   )
 }
