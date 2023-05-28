@@ -9,13 +9,14 @@ import {
   Input,
   Link,
   SimpleGrid,
+  Text,
   useToast,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { FcGoogle } from 'react-icons/fc'
 import { NavLink, useNavigate } from 'react-router-dom'
 
-import { registerUser } from '../../services/auth'
+import { loginWithGoogle, registerUser } from '../../services/auth'
 
 export const Register = () => {
   const { register, handleSubmit, formState } = useForm()
@@ -52,6 +53,30 @@ export const Register = () => {
     }
   }
 
+  const handleRegisterWithGoogle = async () => {
+    try {
+      const user = await loginWithGoogle()
+      if (user) {
+        navigate('/productos')
+        toast({
+          title: 'Cuenta creada exitosamente',
+          status: 'success',
+          colorScheme: 'pink',
+          duration: 2500,
+          isClosable: false,
+        })
+      }
+    } catch (error) {
+      toast({
+        title: 'Error en el inicio de sesión',
+        status: 'error',
+        colorScheme: 'pink',
+        duration: 2500,
+        isClosable: false,
+      })
+    }
+  }
+
   return (
     <SimpleGrid h="100vh" templateColumns={{ base: '1fr', md: '1fr 1fr' }}>
       <Flex justifyContent="center" align="center" p={2}>
@@ -59,7 +84,12 @@ export const Register = () => {
           <Heading as="h1" mb={4} color="#BE3969" textAlign="center">
             Crear cuenta
           </Heading>
-          <Button type="button" mb={4} w="full">
+          <Button
+            type="button"
+            mb={4}
+            w="full"
+            onClick={handleRegisterWithGoogle}
+          >
             <Link mr={2}>
               <FcGoogle size={20} />
             </Link>
@@ -101,7 +131,8 @@ export const Register = () => {
             <Button type="submit" mt={4} w="full" isLoading={isSubmitting}>
               Crear Cuenta
             </Button>
-            <Flex justifyContent="center" mt={3}>
+            <Flex justifyContent="center" mt={3} gap={2}>
+              <Text>¿Ya tenes cuenta?</Text>
               <Link
                 as={NavLink}
                 fontWeight="semibold"

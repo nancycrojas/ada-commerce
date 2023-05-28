@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Divider,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -9,13 +10,14 @@ import {
   Input,
   Link,
   SimpleGrid,
+  Text,
   useToast,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { FcGoogle } from 'react-icons/fc'
 import { NavLink, useNavigate } from 'react-router-dom'
 
-import { loginWithEmail } from '../../services/auth'
+import { loginWithEmail, loginWithGoogle } from '../../services/auth'
 
 export const Login = () => {
   const { register, handleSubmit, formState } = useForm()
@@ -56,6 +58,30 @@ export const Login = () => {
     }
   }
 
+  const handleLoginWithGoogle = async () => {
+    try {
+      const user = await loginWithGoogle()
+      if (user) {
+        navigate('/productos')
+        toast({
+          title: 'Has accedido a tu cuenta',
+          status: 'success',
+          colorScheme: 'pink',
+          duration: 2500,
+          isClosable: false,
+        })
+      }
+    } catch (error) {
+      toast({
+        title: 'Error en el inicio de sesión',
+        status: 'error',
+        colorScheme: 'pink',
+        duration: 2500,
+        isClosable: false,
+      })
+    }
+  }
+
   return (
     <SimpleGrid
       h="100vh"
@@ -78,12 +104,24 @@ export const Login = () => {
           <Heading as="h1" mb={4} color="#BE3969" textAlign="center">
             Iniciar Sesión
           </Heading>
-          <Button type="button" mb={4} w="full">
+          <Button type="button" mb={4} w="full" onClick={handleLoginWithGoogle}>
             <Link mr={2}>
               <FcGoogle size={20} />
             </Link>
             Continuar con Google
           </Button>
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            gap={2}
+            textAlign="center"
+          >
+            <Divider flex={1} />
+            <Text fontSize="sm" fontWeight="light" color="gray" mb={2}>
+              O inicia sesión con tu correo electrónico
+            </Text>
+            <Divider flex={1} />
+          </Flex>
           <FormControl isInvalid={errors.email}>
             <FormLabel>Email</FormLabel>
             <Input
@@ -120,14 +158,15 @@ export const Login = () => {
             <Button type="submit" mt={4} w="full" isLoading={isSubmitting}>
               Iniciar Sesión
             </Button>
-            <Flex justifyContent="center" mt={3}>
+            <Flex justifyContent="center" mt={3} gap={2}>
+              <Text>¿No tenes cuenta? </Text>
               <Link
                 as={NavLink}
                 fontWeight="semibold"
                 to="/registro"
                 _hover={{ color: '#BE3969' }}
               >
-                ¿No tenes cuenta? Regístrate
+                Regístrate
               </Link>
             </Flex>
           </FormControl>

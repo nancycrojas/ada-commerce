@@ -13,7 +13,7 @@ import {
 import { Link } from 'react-router-dom'
 
 export const ProductCard = ({ product }) => {
-  const { image, name, description, price, id } = product
+  const { image, name, price, id } = product
   return (
     <Card maxW="sm">
       <CardBody>
@@ -22,9 +22,6 @@ export const ProductCard = ({ product }) => {
           <Heading size="md" fontWeight={400}>
             {name}
           </Heading>
-          <Text fontWeight={300} fontSize="lg">
-            {description}
-          </Text>
           <Text fontWeight={300} fontSize="2xl">
             ${price}
           </Text>
