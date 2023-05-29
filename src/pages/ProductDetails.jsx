@@ -5,23 +5,34 @@ import {
   Flex,
   Heading,
   Image,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   SimpleGrid,
   Spinner,
   Stack,
   StackDivider,
   Text,
+  useToast,
 } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
+import { CartContext } from '../context/CartContext'
 import { getProductById } from '../services/products'
 
 export const ProductDetails = () => {
   const { id } = useParams()
+  const { addProduct } = useContext(CartContext)
 
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [quantity, setQuantity] = useState(1)
+
+  const toast = useToast()
 
   useEffect(() => {
     const getData = async () => {
@@ -36,6 +47,20 @@ export const ProductDetails = () => {
     }
     getData()
   }, [id])
+
+  const addProductToCart = () => {
+    addProduct({
+      ...product,
+      quantity,
+    })
+    toast({
+      title: 'Producto agregado',
+      status: 'success',
+      colorScheme: 'pink',
+      duration: 2500,
+      isClosable: false,
+    })
+  }
 
   return (
     <Container maxW="5xl">
@@ -111,21 +136,38 @@ export const ProductDetails = () => {
                 </SimpleGrid>
               </Box>
             </Stack>
-
-            <Button
-              w="full"
-              size="lg"
-              py={7}
-              bg="black"
-              color="white"
-              textTransform="uppercase"
-              _hover={{
-                transform: 'translateY(2px)',
-                boxShadow: 'lg',
-              }}
-            >
-              Agregar al Carrito
-            </Button>
+            <Flex>
+              <NumberInput
+                defaultValue={1}
+                min={1}
+                max={product.stock}
+                size="lg"
+                maxW="100px"
+                mr="2rem"
+                onChange={(value) => setQuantity(Number(value))}
+              >
+                <NumberInputField py={6} />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+              <Button
+                w="full"
+                size="lg"
+                py={6}
+                bg="black"
+                color="white"
+                textTransform="uppercase"
+                _hover={{
+                  transform: 'translateY(2px)',
+                  boxShadow: 'lg',
+                }}
+                onClick={addProductToCart}
+              >
+                Agregar al Carrito
+              </Button>
+            </Flex>
           </Stack>
         </SimpleGrid>
       )}

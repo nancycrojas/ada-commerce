@@ -1,7 +1,9 @@
 import { Button, Heading, Text, VStack } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export const NotFound = () => {
+  const navigate = useNavigate()
+
   return (
     <VStack
       justifyContent="center"
@@ -16,9 +18,7 @@ export const NotFound = () => {
         Es posible que el enlace que seleccionaste no funcione o que se haya
         eliminado la página.
       </Text>
-      <Button>
-        <Link to="/">Volver a inicio</Link>
-      </Button>
+      <Button onClick={() => navigate(-1)}>Volver</Button>
     </VStack>
   )
 }

@@ -9,11 +9,32 @@ import {
   Image,
   Stack,
   Text,
+  useToast,
 } from '@chakra-ui/react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+
+import { CartContext } from '../context/CartContext'
 
 export const ProductCard = ({ product }) => {
   const { image, name, price, id } = product
+  const { addProduct } = useContext(CartContext)
+  const toast = useToast()
+
+  const addProductToCart = (product, quantity) => {
+    addProduct({
+      ...product,
+      quantity,
+    })
+    toast({
+      title: 'Producto agregado',
+      status: 'success',
+      colorScheme: 'pink',
+      duration: 2500,
+      isClosable: false,
+    })
+  }
+
   return (
     <Card maxW="sm">
       <CardBody>
@@ -44,7 +65,11 @@ export const ProductCard = ({ product }) => {
           >
             Ver Detalles
           </Button>
-          <Button variant="ghost" color="#BE3969">
+          <Button
+            variant="ghost"
+            color="#BE3969"
+            onClick={() => addProductToCart(product, 1)}
+          >
             Agregar al carrito
           </Button>
         </ButtonGroup>
