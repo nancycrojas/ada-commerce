@@ -1,9 +1,16 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
+
+import { getLocalStorage, setLocalStorage } from '../utils/localStorage'
 
 export const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([])
+  const initialCart = getLocalStorage('cart') || []
+  const [cart, setCart] = useState(initialCart)
+
+  useEffect(() => {
+    setLocalStorage('cart', cart)
+  }, [cart])
 
   const addProduct = (product) => {
     setCart([...cart, product])
