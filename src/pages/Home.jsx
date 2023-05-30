@@ -43,11 +43,10 @@ export const Home = () => {
         </Box>
         <Image
           width="340px"
-          src="/src/assets/home.png"
+          src="https://firebasestorage.googleapis.com/v0/b/ada-commerce.appspot.com/o/home.png?alt=media&token=1e932c55-fb61-48a0-9852-7c47ff202633"
           alt="persona comprando"
         />
       </Flex>
-
       <Box mt={8}>
         <Heading as="h2" size="lg">
           Los más buscados

@@ -116,10 +116,12 @@ export const ProductDetails = () => {
               direction="column"
               divider={<StackDivider borderColor="gray.300" />}
             >
-              <Text fontSize="2xl" fontWeight={300}>
+              <Text
+                fontSize={{ base: 'xl', sm: '2xl', md: '2xl', lg: '2xl' }}
+                fontWeight={300}
+              >
                 {product?.description}
               </Text>
-
               <Box>
                 <Text
                   fontSize={{ base: '16px', lg: '18px' }}
@@ -130,7 +132,6 @@ export const ProductDetails = () => {
                 >
                   Categoria
                 </Text>
-
                 <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                   <Text spacing={2}>{product?.category}</Text>
                 </SimpleGrid>
@@ -164,6 +165,7 @@ export const ProductDetails = () => {
                   boxShadow: 'lg',
                 }}
                 onClick={addProductToCart}
+                fontSize={{ base: '11px', sm: '18px', md: '18px', lg: '18px' }}
               >
                 Agregar al Carrito
               </Button>

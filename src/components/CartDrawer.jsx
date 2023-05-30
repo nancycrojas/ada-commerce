@@ -45,7 +45,12 @@ export const CartDrawer = ({ isOpen, onClose }) => {
         <DrawerFooter>
           {cart.length > 0 && (
             <>
-              <Button variant="outline" mr={3} onClick={clearCart}>
+              <Button
+                variant="outline"
+                mr={3}
+                onClick={clearCart}
+                fontSize={{ base: '12px', sm: '16px', md: '16px', lg: '16px' }}
+              >
                 Vaciar Carrito
               </Button>
               <Button
@@ -54,6 +59,7 @@ export const CartDrawer = ({ isOpen, onClose }) => {
                 _hover={{
                   boxShadow: 'lg',
                 }}
+                fontSize={{ base: '12px', sm: '16px', md: '16px', lg: '16px' }}
               >
                 Finalizar Compra
               </Button>

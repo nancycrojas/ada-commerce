@@ -50,7 +50,17 @@ export const ProductCard = ({ product }) => {
       </CardBody>
       <Divider />
       <CardFooter>
-        <ButtonGroup spacing="2">
+        <ButtonGroup
+          spacing="2"
+          display="flex"
+          flexDirection={{
+            base: 'column',
+            sm: 'row',
+            md: 'row',
+            lg: 'row',
+            xl: 'row',
+          }}
+        >
           <Button
             as={Link}
             to={id}
