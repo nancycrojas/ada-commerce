@@ -1,6 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
+import { Filters } from '../components/Filters'
 import { IsLoading } from '../components/IsLoading'
 import { ProductCard } from '../components/ProductCard'
 import { getAllProducts } from '../services/products'
@@ -25,13 +26,18 @@ export const Products = () => {
   }, [])
 
   return (
-    <Flex flexWrap="wrap" justifyContent="center" gap={4} m={6}>
-      {error && <Text>Ha ocurrido un error</Text>}
-      {loading && <IsLoading />}
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-      {!loading && !products.length && <Text>No se encontraron productos</Text>}
-    </Flex>
+    <>
+      <Filters />
+      <Flex flexWrap="wrap" justifyContent="center" gap={4} m={6}>
+        {error && <Text>Ha ocurrido un error</Text>}
+        {loading && <IsLoading />}
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+        {!loading && !products.length && (
+          <Text>No se encontraron productos</Text>
+        )}
+      </Flex>
+    </>
   )
 }

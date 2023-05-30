@@ -8,6 +8,7 @@ import { AuthLayout } from './layouts/AuthLayout'
 import { NotFoundLayout } from './layouts/NotFoundLayout'
 import { Login } from './pages/auth/Login'
 import { Register } from './pages/auth/Register'
+import { Checkout } from './pages/Checkout'
 import { Home } from './pages/Home'
 import { NotFound } from './pages/NotFound'
 import { ProductDetails } from './pages/ProductDetails'
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/productos" element={<Products />} />
         <Route path="/productos/:id" element={<ProductDetails />} />
+        <Route path="/finalizar-compra" element={<Checkout />} />
       </Route>
       <Route element={<NotFoundLayout />}>
         <Route path="*" element={<NotFound />} />
