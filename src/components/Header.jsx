@@ -46,7 +46,7 @@ export const Header = () => {
                 </>
               ) : (
                 <>
-                  <MenuItem as={NavLink} to="/mis-pedidos">
+                  <MenuItem as={NavLink} to="/mi-cuenta">
                     Mis Pedidos
                   </MenuItem>
                   <MenuItem onClick={() => handleLogout()}>
@@ -104,7 +104,9 @@ export const Header = () => {
                 </MenuButton>
                 <Portal>
                   <MenuList>
-                    <MenuItem>Mis Pedidos</MenuItem>
+                    <MenuItem as={NavLink} to="/mi-cuenta">
+                      Mis Pedidos
+                    </MenuItem>
                     <MenuItem onClick={() => handleLogout()}>
                       Cerrar Sesión
                     </MenuItem>

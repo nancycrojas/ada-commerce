@@ -6,6 +6,7 @@ import { UserContext } from './context/UserContext'
 import { AppLayout } from './layouts/AppLayout'
 import { AuthLayout } from './layouts/AuthLayout'
 import { NotFoundLayout } from './layouts/NotFoundLayout'
+import { Account } from './pages/Account'
 import { Login } from './pages/auth/Login'
 import { Register } from './pages/auth/Register'
 import { Checkout } from './pages/Checkout'
@@ -26,6 +27,7 @@ function App() {
         <Route path="/productos" element={<Products />} />
         <Route path="/productos/:id" element={<ProductDetails />} />
         <Route path="/finalizar-compra" element={<Checkout />} />
+        <Route path="/mi-cuenta" element={<Account />} />
       </Route>
       <Route element={<NotFoundLayout />}>
         <Route path="*" element={<NotFound />} />

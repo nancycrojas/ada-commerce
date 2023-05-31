@@ -85,7 +85,7 @@ export const ProductDetails = () => {
         </Text>
       ) : (
         <SimpleGrid
-          columns={{ base: 1, lg: 2 }}
+          columns={{ base: 1, md: 2, lg: 2 }}
           spacing={{ base: 8, md: 10 }}
           py={{ base: 18, md: 24 }}
         >

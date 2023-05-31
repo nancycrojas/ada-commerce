@@ -105,7 +105,7 @@ export const Register = () => {
               Continuar con Google
             </Button>
             <FormControl isInvalid={errors.email}>
-              <FormLabel>Email</FormLabel>
+              <FormLabel htmlFor="email">Email</FormLabel>
               <Input
                 type="email"
                 name="email"
@@ -122,7 +122,9 @@ export const Register = () => {
               <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
             </FormControl>
             <FormControl isInvalid={errors.password}>
-              <FormLabel mt={2}>Contraseña</FormLabel>
+              <FormLabel htmlFor="password" mt={2}>
+                Contraseña
+              </FormLabel>
               <InputGroup>
                 <Input
                   type={show ? 'text' : 'password'}

@@ -17,14 +17,14 @@ export const CartItem = ({ product }) => {
 
   return (
     <Card
-      direction={{ base: 'column', sm: 'row' }}
+      direction={{ base: 'row', sm: 'row' }}
       overflow="hidden"
       variant="outline"
-      maxH={{ base: '100%', sm: '150px' }}
+      maxH="170px"
     >
       <Image
         objectFit="cover"
-        maxW={{ base: '100%', sm: '150px' }}
+        maxW={{ base: '100px', sm: '150px' }}
         maxH={{ base: '100%', sm: '150px' }}
         src={image}
         alt={name}
