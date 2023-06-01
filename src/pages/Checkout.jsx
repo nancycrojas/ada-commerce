@@ -32,7 +32,7 @@ export const Checkout = () => {
 
   const onSubmitOrder = (data) => {
     console.log(data)
-    navigate('/mi-cuenta')
+    navigate('/mi-cuenta/pedidos')
     toast({
       title: 'Tu orden fue creada con éxito',
       status: 'success',

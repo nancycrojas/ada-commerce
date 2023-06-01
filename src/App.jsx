@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import { IsLoading } from './components/IsLoading'
+import { ProtegedRoute } from './components/ProtegedRoute'
 import { UserContext } from './context/UserContext'
 import { AppLayout } from './layouts/AppLayout'
 import { AuthLayout } from './layouts/AuthLayout'
@@ -12,6 +13,7 @@ import { Register } from './pages/auth/Register'
 import { Checkout } from './pages/Checkout'
 import { Home } from './pages/Home'
 import { NotFound } from './pages/NotFound'
+import { Orders } from './pages/Orders'
 import { ProductDetails } from './pages/ProductDetails'
 import { Products } from './pages/Products'
 
@@ -26,8 +28,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/productos" element={<Products />} />
         <Route path="/productos/:id" element={<ProductDetails />} />
-        <Route path="/finalizar-compra" element={<Checkout />} />
-        <Route path="/mi-cuenta" element={<Account />} />
+        <Route element={<ProtegedRoute />}>
+          <Route path="/finalizar-compra" element={<Checkout />} />
+          <Route path="/mi-cuenta" element={<Account />}>
+            <Route path="pedidos" element={<Orders />} />
+          </Route>
+        </Route>
       </Route>
       <Route element={<NotFoundLayout />}>
         <Route path="*" element={<NotFound />} />
