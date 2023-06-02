@@ -51,15 +51,10 @@ export const ProductCard = ({ product }) => {
       <Divider />
       <CardFooter>
         <ButtonGroup
-          spacing="2"
+          gap={2}
           display="flex"
-          flexDirection={{
-            base: 'column',
-            sm: 'row',
-            md: 'row',
-            lg: 'row',
-            xl: 'row',
-          }}
+          flexWrap="wrap"
+          justifyContent="center"
         >
           <Button
             as={Link}

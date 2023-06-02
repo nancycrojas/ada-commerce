@@ -1,6 +1,37 @@
-import { Box, Button, Flex, Heading, Image } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Image,
+  SimpleGrid,
+  Text,
+} from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
+
+import { IsLoading } from '../components/IsLoading'
+import { ProductCard } from '../components/ProductCard'
+import { getAllProducts } from '../services/products'
 
 export const Home = () => {
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const products = await getAllProducts()
+        setProducts(products)
+      } catch (error) {
+        setError(true)
+      } finally {
+        setLoading(false)
+      }
+    }
+    getProducts()
+  }, [])
+
   return (
     <Flex flexDirection="column" m={{ base: '10px', md: '30px' }}>
       <Flex
@@ -33,7 +64,6 @@ export const Home = () => {
             variant="outline"
             border="2px"
             borderRadius="50px"
-            // p={6}
             p={{ base: 2, md: 5 }}
             size={{ base: 'sm', md: 'md' }}
             mt={8}
@@ -51,6 +81,16 @@ export const Home = () => {
         <Heading as="h2" size="lg">
           Los más buscados
         </Heading>
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} gap={2}>
+          {error && <Text>Ha ocurrido un error</Text>}
+          {loading && <IsLoading />}
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+          {!loading && !products.length && (
+            <Text>No se encontraron productos</Text>
+          )}
+        </SimpleGrid>
       </Box>
     </Flex>
   )
