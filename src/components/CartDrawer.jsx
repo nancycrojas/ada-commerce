@@ -18,16 +18,6 @@ import { CartItem } from './CartItem'
 export const CartDrawer = ({ isOpen, onClose }) => {
   const { cart, clearCart } = useContext(CartContext)
 
-  const cartProducts = cart.reduce((accProducts, product) => {
-    const { id, quantity } = product
-    if (accProducts[id]) {
-      accProducts[id].quantity += quantity
-    } else {
-      accProducts[id] = { ...product }
-    }
-    return accProducts
-  }, {})
-
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
       <DrawerOverlay />
@@ -37,10 +27,9 @@ export const CartDrawer = ({ isOpen, onClose }) => {
 
         <DrawerBody>
           {!cart.length && <Text>No hay productos en el carrito</Text>}
-          {cart &&
-            Object.values(cartProducts).map((product) => (
-              <CartItem key={product.id} product={product} />
-            ))}
+          {cart.map((product) => (
+            <CartItem key={product.id} product={product} />
+          ))}
         </DrawerBody>
 
         <DrawerFooter>

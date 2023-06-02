@@ -13,7 +13,21 @@ export const CartProvider = ({ children }) => {
   }, [cart])
 
   const addProduct = (product) => {
-    setCart([...cart, product])
+    setCart((prevCart) => {
+      const updatedCart = prevCart.reduce((acc, item) => {
+        if (item.id === product.id) {
+          return [
+            ...acc,
+            { ...item, quantity: item.quantity + product.quantity },
+          ]
+        }
+        return [...acc, item]
+      }, [])
+      if (!updatedCart.some((item) => item.id === product.id)) {
+        updatedCart.push(product)
+      }
+      return updatedCart
+    })
   }
 
   const clearCart = () => {
