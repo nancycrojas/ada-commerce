@@ -20,7 +20,7 @@ import { CartContext } from '../context/CartContext'
 import { UserContext } from '../context/UserContext'
 
 export const Checkout = () => {
-  const { cart, clearCart } = useContext(CartContext)
+  const { cart, clearCart, cartTotal } = useContext(CartContext)
   const { user } = useContext(UserContext)
 
   const { register, handleSubmit, formState } = useForm()
@@ -141,7 +141,7 @@ export const Checkout = () => {
                 fontWeight="semibold"
               >
                 <Text>Total:</Text>
-                <Text>$</Text>
+                <Text>$ {cartTotal()}</Text>
               </HStack>
               <Button
                 type="submit"
