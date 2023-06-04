@@ -1,4 +1,12 @@
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore'
 
 import { db } from '../firebase/config'
 
@@ -27,4 +35,25 @@ export const getProductById = async (id) => {
   } else {
     throw new Error('El producto no existe')
   }
+}
+
+export const createOrder = async (order) => {
+  const doc = await addDoc(collection(db, 'orders'), order)
+  return doc
+}
+
+export const getOrderByUserId = async (id) => {
+  const data = await getDocs(
+    query(collection(db, 'orders'), where('id', '==', id))
+  )
+
+  let orders = []
+
+  data.forEach((doc) => {
+    orders.push({
+      ...doc.data(),
+      id: doc.id,
+    })
+  })
+  return orders
 }

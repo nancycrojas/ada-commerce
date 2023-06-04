@@ -11,13 +11,14 @@ import {
   Text,
   useToast,
 } from '@chakra-ui/react'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import { CartItem } from '../components/CartItem'
 import { CartContext } from '../context/CartContext'
 import { UserContext } from '../context/UserContext'
+import { createOrder } from '../services/products'
 
 export const Checkout = () => {
   const { cart, clearCart, cartTotal } = useContext(CartContext)
@@ -25,21 +26,42 @@ export const Checkout = () => {
 
   const { register, handleSubmit, formState } = useForm()
 
-  const { errors, isSubmitting, isDirty } = formState
+  const { errors, isDirty } = formState
   const navigate = useNavigate()
 
   const toast = useToast()
 
-  const onSubmitOrder = (data) => {
+  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const onSubmitOrder = async (data) => {
     console.log(data)
-    navigate('/mi-cuenta/pedidos')
-    toast({
-      title: 'Tu orden fue creada con éxito',
-      status: 'success',
-      colorScheme: 'pink',
-      duration: 2500,
-    })
-    clearCart()
+    setLoading(true)
+    try {
+      const paid = Math.random() >= 0.5
+      await createOrder({
+        name: data.name,
+        email: data.email,
+        address: data.address,
+        province: data.province,
+        total: cartTotal(),
+        id: user.uid,
+        paid: paid,
+        cart: cart,
+      })
+      navigate('/mi-cuenta/pedidos')
+      toast({
+        title: 'Tu orden fue creada con éxito',
+        status: 'success',
+        colorScheme: 'pink',
+        duration: 2500,
+      })
+      clearCart()
+    } catch (error) {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -143,6 +165,7 @@ export const Checkout = () => {
                 <Text>Total:</Text>
                 <Text>$ {cartTotal()}</Text>
               </HStack>
+              {error && <Text>Se produjo un error</Text>}
               <Button
                 type="submit"
                 w="full"
@@ -156,10 +179,9 @@ export const Checkout = () => {
                   boxShadow: 'lg',
                 }}
                 fontSize={{ base: '11px', sm: '18px', md: '18px', lg: '18px' }}
-                isLoading={isSubmitting}
                 isDisabled={!isDirty}
               >
-                Confirmar Compra
+                {loading ? 'Confirmando ...' : 'Confirmar Compra'}
               </Button>
             </SimpleGrid>
           </form>
