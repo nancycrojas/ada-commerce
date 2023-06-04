@@ -57,7 +57,16 @@ export const Footer = () => {
         </Link>
       </HStack>
       <Text color="#7E7E7E">Proyecto final © 2023 AdaCommerce</Text>
-      <Text color="#7E7E7E">Hecho con ❤️ por Nancy Rojas</Text>
+      <Text color="#7E7E7E">
+        Hecho con ❤️ por{' '}
+        <Link
+          as="a"
+          href="https://www.linkedin.com/in/nancy-clarisa-rojas/"
+          target="_blanck"
+        >
+          Nancy Rojas
+        </Link>
+      </Text>
     </HStack>
   )
 }
