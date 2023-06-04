@@ -6,13 +6,22 @@ import {
   CardFooter,
   CardHeader,
   Heading,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   SimpleGrid,
   Stack,
   StackDivider,
   Text,
+  useDisclosure,
 } from '@chakra-ui/react'
 import { useContext, useEffect, useState } from 'react'
 
+import { CartItem } from '../components/CartItem'
 import { IsLoading } from '../components/IsLoading'
 import { UserContext } from '../context/UserContext'
 import { getOrderByUserId } from '../services/products'
@@ -22,6 +31,8 @@ export const Orders = () => {
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [order, setOrder] = useState(null)
 
   useEffect(() => {
     const loadUserOrders = async () => {
@@ -96,6 +107,10 @@ export const Orders = () => {
                     _hover={{
                       boxShadow: 'lg',
                     }}
+                    onClick={() => {
+                      setOrder(order)
+                      onOpen()
+                    }}
                   >
                     Ver Detalles
                   </Button>
@@ -106,6 +121,30 @@ export const Orders = () => {
         </SimpleGrid>
       )}
       {!loading && !orders.length && <Text>No tenes órdenes pendientes</Text>}
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Detalle del Pedido</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {order &&
+              order.cart.map((item) => (
+                <Box key={item.product}>
+                  <CartItem product={item} hideButton={true} />
+                </Box>
+              ))}
+          </ModalBody>
+
+          <ModalFooter>
+            <Box w="100%">
+              <Button w="full" bg="gray" color="white" mr={3} onClick={onClose}>
+                CERRAR
+              </Button>
+            </Box>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Stack>
   )
 }

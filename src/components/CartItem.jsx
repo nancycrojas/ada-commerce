@@ -11,7 +11,7 @@ import { useContext } from 'react'
 
 import { CartContext } from '../context/CartContext'
 
-export const CartItem = ({ product }) => {
+export const CartItem = ({ product, hideButton }) => {
   const { name, image, quantity, price, id } = product
   const { removeProduct } = useContext(CartContext)
 
@@ -37,14 +37,16 @@ export const CartItem = ({ product }) => {
             {quantity} x ${price}
           </Text>
           <Text>Total: ${price * quantity}</Text>
-          <Button
-            variant="solid"
-            colorScheme="blue"
-            size="xs"
-            onClick={() => removeProduct(id)}
-          >
-            Eliminar
-          </Button>
+          {!hideButton && (
+            <Button
+              variant="solid"
+              colorScheme="blue"
+              size="xs"
+              onClick={() => removeProduct(id)}
+            >
+              Eliminar
+            </Button>
+          )}
         </CardBody>
       </Stack>
     </Card>
