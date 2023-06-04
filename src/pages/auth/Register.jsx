@@ -87,6 +87,17 @@ export const Register = () => {
     <SimpleGrid h="100vh" templateColumns={{ base: '1fr', md: '1fr 1fr' }}>
       <Flex justifyContent="center" align="center" p={2}>
         <Box w="full" maxW="350px">
+          <Button
+            position="absolute"
+            top="4"
+            left="4"
+            as={NavLink}
+            fontWeight="semibold"
+            to="/"
+            _hover={{ color: '#BE3969' }}
+          >
+            Volver
+          </Button>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Heading as="h1" mb={4} color="#BE3969" textAlign="center">
               Crear cuenta
