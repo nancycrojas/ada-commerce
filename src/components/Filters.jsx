@@ -6,7 +6,7 @@ import {
   SimpleGrid,
 } from '@chakra-ui/react'
 
-export const Filters = () => {
+export const Filters = ({ filters, setFilters }) => {
   return (
     <SimpleGrid
       w="full"
@@ -16,19 +16,32 @@ export const Filters = () => {
     >
       <FormControl>
         <FormLabel>Nombre</FormLabel>
-        <Input name="name" type="text" placeholder="Buscar" />
+        <Input
+          name="name"
+          type="text"
+          placeholder="Buscar"
+          value={filters.name}
+          onChange={(e) => setFilters({ ...filters, name: e.target.value })}
+        />
       </FormControl>
       <FormControl>
         <FormLabel>Categoría</FormLabel>
-        <Select>
+        <Select
+          value={filters.category}
+          onChange={(e) => setFilters({ ...filters, category: e.target.value })}
+        >
           <option value="seleccionar">Seleccionar</option>
-          <option value="calzado">Calzado</option>
-          <option value="accesorios">Accesorios</option>
+          <option value="Calzado">Calzado</option>
+          <option value="Accesorios">Accesorios</option>
         </Select>
       </FormControl>
       <FormControl>
         <FormLabel>Precio Máximo</FormLabel>
-        <Input placeholder="Hasta" />
+        <Input
+          placeholder="Hasta"
+          value={filters.maxPrice}
+          onChange={(e) => setFilters({ ...filters, maxPrice: e.target.value })}
+        />
       </FormControl>
     </SimpleGrid>
   )

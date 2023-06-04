@@ -38,7 +38,9 @@ export const ProductCard = ({ product }) => {
   return (
     <Card maxW="sm">
       <CardBody>
-        <Image src={image} alt={name} borderRadius="lg" />
+        <Link to={'/productos/' + id}>
+          <Image src={image} alt={name} borderRadius="lg" />
+        </Link>
         <Stack mt="6" spacing="3">
           <Heading size="md" fontWeight={400}>
             {name}
@@ -58,7 +60,7 @@ export const ProductCard = ({ product }) => {
         >
           <Button
             as={Link}
-            to={id}
+            to={'/productos/' + id}
             variant="solid"
             bg="black"
             color="white"

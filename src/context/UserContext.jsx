@@ -19,11 +19,8 @@ export const UserProvider = ({ children }) => {
           uid: user.uid,
         })
         // const uid = user.uid
-        console.log('esta logueado')
-        console.log(user)
       } else {
         setUserLoading(false)
-        console.log('no esta logueado')
       }
       setIsLoading(false)
     })

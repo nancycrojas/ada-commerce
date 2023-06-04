@@ -45,8 +45,6 @@ export const CartProvider = ({ children }) => {
     return totalPrice
   }
 
-  console.log(cart)
-
   return (
     <CartContext.Provider
       value={{ cart, addProduct, clearCart, removeProduct, cartTotal }}
