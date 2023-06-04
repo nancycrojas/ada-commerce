@@ -44,7 +44,7 @@ Este proyecto es una aplicación de comercio electrónico llamada AdaCommerce. P
 
 ## Instalación 🔧
 
-- Clona este [repositorio](https://ada-commerce.vercel.app/).
+- Clona este [repositorio](https://github.com/nancycrojas/ada-commerce).
 - Navega hasta el directorio del proyecto en tu terminal.
 - Instala las dependencias del proyecto utilizando
   `npm install`

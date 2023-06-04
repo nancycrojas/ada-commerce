@@ -22,7 +22,7 @@ export const Home = () => {
     const getProducts = async () => {
       try {
         const products = await getAllProducts()
-        setProducts(products)
+        setProducts(products.slice(0, 4))
       } catch (error) {
         setError(true)
       } finally {

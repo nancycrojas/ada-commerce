@@ -36,7 +36,6 @@ export const Register = () => {
   const onSubmit = async (data) => {
     try {
       const user = await registerUser(data)
-      console.log(user)
       if (user) {
         navigate('/')
         toast({
@@ -50,7 +49,6 @@ export const Register = () => {
         throw new Error('Error al crear la cuenta')
       }
     } catch (error) {
-      console.error(error)
       toast({
         title: 'Error al crear la cuenta',
         status: 'error',

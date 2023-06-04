@@ -35,7 +35,6 @@ export const Checkout = () => {
   const [loading, setLoading] = useState(false)
 
   const onSubmitOrder = async (data) => {
-    console.log(data)
     setLoading(true)
     try {
       const paid = Math.random() >= 0.5

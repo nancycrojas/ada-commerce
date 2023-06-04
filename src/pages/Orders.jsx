@@ -130,9 +130,7 @@ export const Orders = () => {
           <ModalBody>
             {order &&
               order.cart.map((item) => (
-                <Box key={item.product}>
-                  <CartItem product={item} hideButton={true} />
-                </Box>
+                <CartItem key={item.id} product={item} hideButton={true} />
               ))}
           </ModalBody>
 
