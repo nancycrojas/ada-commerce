@@ -12,7 +12,7 @@ export const Filters = ({ filters, setFilters }) => {
       w="full"
       columns={{ base: 1, md: 3 }}
       gap={{ base: 4, md: 9 }}
-      p={{ base: '20px 20px', md: '20px 80px' }}
+      p={{ base: '20px 20px', md: '20px 30px' }}
     >
       <FormControl>
         <FormLabel>Nombre</FormLabel>

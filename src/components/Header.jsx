@@ -1,5 +1,8 @@
+import 'animate.css'
+
 import { HamburgerIcon } from '@chakra-ui/icons'
 import {
+  Badge,
   Button,
   Heading,
   HStack,
@@ -18,15 +21,17 @@ import { BsBagHeart } from 'react-icons/bs'
 import { FaUserAlt } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 
+import { CartContext } from '../context/CartContext'
 import { UserContext } from '../context/UserContext'
 import { CartDrawer } from './CartDrawer'
 
 export const Header = () => {
   const { user, handleLogout } = useContext(UserContext)
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { cart } = useContext(CartContext)
 
   return (
-    <HStack justifyContent="space-between" p={4}>
+    <HStack justifyContent="space-between" p={4} px={{ base: 3, md: 7 }}>
       <Show below="md">
         <Menu>
           <MenuButton as={IconButton} icon={<HamburgerIcon size={15} />} />
@@ -59,6 +64,8 @@ export const Header = () => {
         </Menu>
       </Show>
       <Heading
+        as={NavLink}
+        to="/"
         color="#BE3969"
         fontSize={{ base: '18px', sm: '24px', md: '36px', lg: '36px' }}
       >
@@ -120,6 +127,23 @@ export const Header = () => {
             icon={<BsBagHeart size={20} />}
             onClick={onOpen}
           />
+          {cart.length > 0 && (
+            <Badge
+              position="absolute"
+              top={2}
+              right={{ md: 5, base: 1 }}
+              borderRadius="full"
+              color="white"
+              bg="#BE3969"
+              w="20px"
+              h="20px"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              {cart.length}
+            </Badge>
+          )}
         </HStack>
       </HStack>
       <CartDrawer isOpen={isOpen} onClose={onClose} />

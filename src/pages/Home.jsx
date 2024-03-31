@@ -1,3 +1,5 @@
+import 'animate.css'
+
 import {
   Box,
   Button,
@@ -44,9 +46,11 @@ export const Home = () => {
           lg: '40px 90px 40px 160px ',
         }}
         bg="#E8E8E6"
+        minH={400}
       >
         <Box>
           <Heading
+            className="animate__animated animate__slideInLeft"
             as="h1"
             fontWeight="normal"
             color="#BE3969"
@@ -56,6 +60,7 @@ export const Home = () => {
             <b>TECNOLOGIAS WEB.</b>
           </Heading>
           <Button
+            className="animate__animated animate__slideInRight"
             as="a"
             href="https://adaitw.org/"
             target="_blank"
@@ -72,13 +77,14 @@ export const Home = () => {
           </Button>
         </Box>
         <Image
+          className="animate__animated animate__slideInRight"
           width="340px"
           src="https://firebasestorage.googleapis.com/v0/b/ada-commerce.appspot.com/o/home.png?alt=media&token=b65c8096-649f-4a88-8021-4f05148ec409&_gl=1*p87ftk*_ga*ODgwODUwMTE3LjE2ODM3NTczMDA.*_ga_CW55HF8NVT*MTY4NTg3NTEyMy43MC4xLjE2ODU4NzU5MjkuMC4wLjA."
           alt="persona comprando"
         />
       </Flex>
       <Box mt={8}>
-        <Heading as="h2" size="lg">
+        <Heading as="h2" size="lg" pb={8}>
           Los más buscados
         </Heading>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} gap={2}>

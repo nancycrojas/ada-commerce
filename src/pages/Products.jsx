@@ -49,7 +49,7 @@ export const Products = () => {
   return (
     <>
       <Filters filters={filters} setFilters={setFilters} />
-      <Flex flexWrap="wrap" justifyContent="center" gap={4} m={6}>
+      <Flex flexWrap="wrap" justifyContent="center" gap={6} pb={8}>
         {error && <Text>Ha ocurrido un error</Text>}
         {loading && <IsLoading />}
         {products.map((product) => (
