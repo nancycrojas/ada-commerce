@@ -73,7 +73,7 @@ VITE_FIREBASE_APP_ID=<tu_app_id>
 
 Si tienes alguna pregunta sobre la configuración de Firebase, no dudes en consultar la documentación oficial de Firebase.
 
-- Ejecuta el comando npm start para iniciar la aplicación en modo de desarrollo.
+- Ejecuta el comando npm run dev para iniciar la aplicación en modo de desarrollo.
 
 ---
 

@@ -11,6 +11,7 @@ import { Account } from './pages/Account'
 import { Login } from './pages/auth/Login'
 import { Register } from './pages/auth/Register'
 import { Checkout } from './pages/Checkout'
+import { Contact } from './pages/Contact'
 import { Home } from './pages/Home'
 import { NotFound } from './pages/NotFound'
 import { Orders } from './pages/Orders'
@@ -27,6 +28,7 @@ function App() {
       <Route element={<AppLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/productos" element={<Products />} />
+        <Route path="/contacto" element={<Contact />} />
         <Route path="/productos/:id" element={<ProductDetails />} />
         <Route element={<ProtegedRoute />}>
           <Route path="/finalizar-compra" element={<Checkout />} />

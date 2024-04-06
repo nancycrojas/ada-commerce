@@ -60,6 +60,7 @@ export const ProductDetails = () => {
       duration: 2500,
       isClosable: false,
     })
+    setQuantity(1)
   }
 
   return (
@@ -139,7 +140,7 @@ export const ProductDetails = () => {
             </Stack>
             <Flex>
               <NumberInput
-                defaultValue={1}
+                value={quantity}
                 min={1}
                 max={product.stock}
                 size="lg"

@@ -3,6 +3,7 @@ import 'animate.css'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import {
   Badge,
+  Box,
   Button,
   Heading,
   HStack,
@@ -32,7 +33,7 @@ export const Header = () => {
 
   return (
     <HStack justifyContent="space-between" p={4} px={{ base: 3, md: 7 }}>
-      <Show below="md">
+      <Show below="lg">
         <Menu>
           <MenuButton as={IconButton} icon={<HamburgerIcon size={15} />} />
           <Portal>
@@ -42,6 +43,9 @@ export const Header = () => {
               </MenuItem>
               <MenuItem as={NavLink} to="/productos">
                 PRODUCTOS
+              </MenuItem>
+              <MenuItem as={NavLink} to="/contacto">
+                CONTACTO
               </MenuItem>
               {!user ? (
                 <>
@@ -67,12 +71,12 @@ export const Header = () => {
         as={NavLink}
         to="/"
         color="#BE3969"
-        fontSize={{ base: '18px', sm: '24px', md: '36px', lg: '36px' }}
+        fontSize={{ base: '24px', sm: '36px' }}
       >
         AdaCommerce
       </Heading>
       <HStack gap={6}>
-        <Show above="md">
+        <Show above="lg">
           <HStack as="nav" gap={6}>
             <Link
               as={NavLink}
@@ -90,10 +94,18 @@ export const Header = () => {
             >
               PRODUCTOS
             </Link>
+            <Link
+              as={NavLink}
+              fontWeight="semibold"
+              to="/contacto"
+              _hover={{ color: '#BE3969' }}
+            >
+              CONTACTO
+            </Link>
           </HStack>
         </Show>
         <HStack gap={6}>
-          <Show above="md">
+          <Show above="lg">
             {!user ? (
               <Button>
                 <Link
@@ -122,28 +134,30 @@ export const Header = () => {
               </Menu>
             )}
           </Show>
-          <IconButton
-            _hover={{ color: '#BE3969' }}
-            icon={<BsBagHeart size={20} />}
-            onClick={onOpen}
-          />
-          {cart.length > 0 && (
-            <Badge
-              position="absolute"
-              top={2}
-              right={{ md: 5, base: 1 }}
-              borderRadius="full"
-              color="white"
-              bg="#BE3969"
-              w="20px"
-              h="20px"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              {cart.length}
-            </Badge>
-          )}
+          <Box position="relative">
+            <IconButton
+              _hover={{ color: '#BE3969' }}
+              icon={<BsBagHeart size={20} />}
+              onClick={onOpen}
+            />
+            {cart.length > 0 && (
+              <Badge
+                position="absolute"
+                top="-2"
+                right="-2"
+                borderRadius="full"
+                color="white"
+                bg="#BE3969"
+                w="20px"
+                h="20px"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+              >
+                {cart.length}
+              </Badge>
+            )}
+          </Box>
         </HStack>
       </HStack>
       <CartDrawer isOpen={isOpen} onClose={onClose} />

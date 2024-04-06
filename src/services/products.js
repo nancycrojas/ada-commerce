@@ -57,3 +57,8 @@ export const getOrderByUserId = async (id) => {
   })
   return orders
 }
+
+export const createContact = async (contact) => {
+  const doc = await addDoc(collection(db, 'messages'), contact)
+  return doc
+}

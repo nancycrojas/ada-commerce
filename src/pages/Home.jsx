@@ -19,6 +19,7 @@ export const Home = () => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [showLogo, setShowLogo] = useState(false)
 
   useEffect(() => {
     const getProducts = async () => {
@@ -32,6 +33,14 @@ export const Home = () => {
       }
     }
     getProducts()
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLogo(true)
+    }, 1000)
+
+    return () => clearTimeout(timer)
   }, [])
 
   return (
@@ -76,12 +85,25 @@ export const Home = () => {
             VER MAS
           </Button>
         </Box>
-        <Image
-          className="animate__animated animate__slideInRight"
-          width="340px"
-          src="https://firebasestorage.googleapis.com/v0/b/ada-commerce.appspot.com/o/home.png?alt=media&token=b65c8096-649f-4a88-8021-4f05148ec409&_gl=1*p87ftk*_ga*ODgwODUwMTE3LjE2ODM3NTczMDA.*_ga_CW55HF8NVT*MTY4NTg3NTEyMy43MC4xLjE2ODU4NzU5MjkuMC4wLjA."
-          alt="persona comprando"
-        />
+        <Box position="relative">
+          <Image
+            className="animate__animated animate__slideInRight"
+            w={{ base: '340px', md: '640px' }}
+            src="https://firebasestorage.googleapis.com/v0/b/ada-commerce.appspot.com/o/home.png?alt=media&token=b65c8096-649f-4a88-8021-4f05148ec409&_gl=1*p87ftk*_ga*ODgwODUwMTE3LjE2ODM3NTczMDA.*_ga_CW55HF8NVT*MTY4NTg3NTEyMy43MC4xLjE2ODU4NzU5MjkuMC4wLjA."
+            alt="persona comprando"
+          />
+          {showLogo && (
+            <Image
+              className="animate__animated animate__fadeIn"
+              src="/src/assets/icon.png"
+              alt="Logo de React"
+              position="absolute"
+              top="0"
+              right="0"
+              w="50px"
+            />
+          )}
+        </Box>
       </Flex>
       <Box mt={8}>
         <Heading as="h2" size="lg" pb={8}>
