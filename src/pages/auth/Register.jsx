@@ -94,12 +94,12 @@ export const Register = () => {
             as={NavLink}
             fontWeight="semibold"
             to="/"
-            _hover={{ color: '#BE3969' }}
+            _hover={{ color: 'brand.500' }}
           >
             Volver
           </Button>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Heading as="h1" mb={4} color="#BE3969" textAlign="center">
+            <Heading as="h1" mb={4} color="brand.500" textAlign="center">
               Crear cuenta
             </Heading>
             <Button
@@ -167,7 +167,7 @@ export const Register = () => {
                   as={NavLink}
                   fontWeight="semibold"
                   to="/iniciar-sesion"
-                  _hover={{ color: '#BE3969' }}
+                  _hover={{ color: 'brand.500' }}
                 >
                   Iniciar Sesión
                 </Link>
@@ -176,7 +176,7 @@ export const Register = () => {
           </form>
         </Box>
       </Flex>
-      <Box bg="gray.200" display={{ base: 'none', md: 'block' }} />
+      <Box bg="background" display={{ base: 'none', md: 'block' }} />
     </SimpleGrid>
   )
 }

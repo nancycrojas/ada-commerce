@@ -44,7 +44,7 @@ export const CartDrawer = ({ isOpen, onClose }) => {
                 Vaciar Carrito
               </Button>
               <Button
-                bg="#BE3969"
+                bg="brand.500"
                 color="white"
                 _hover={{
                   boxShadow: 'lg',

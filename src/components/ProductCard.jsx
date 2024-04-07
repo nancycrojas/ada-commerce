@@ -74,7 +74,7 @@ export const ProductCard = ({ product }) => {
           </Button>
           <Button
             variant="ghost"
-            color="#BE3969"
+            color="brand.500"
             onClick={() => addProductToCart(product, 1)}
           >
             Agregar al carrito

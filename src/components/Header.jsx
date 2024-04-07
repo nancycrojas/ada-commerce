@@ -70,7 +70,7 @@ export const Header = () => {
       <Heading
         as={NavLink}
         to="/"
-        color="#BE3969"
+        color="brand.500"
         fontSize={{ base: '24px', sm: '36px' }}
       >
         AdaCommerce
@@ -82,7 +82,7 @@ export const Header = () => {
               as={NavLink}
               fontWeight="semibold"
               to="/"
-              _hover={{ color: '#BE3969' }}
+              _hover={{ color: 'brand.500' }}
             >
               INICIO
             </Link>
@@ -90,7 +90,7 @@ export const Header = () => {
               as={NavLink}
               fontWeight="semibold"
               to="/productos"
-              _hover={{ color: '#BE3969' }}
+              _hover={{ color: 'brand.500' }}
             >
               PRODUCTOS
             </Link>
@@ -98,7 +98,7 @@ export const Header = () => {
               as={NavLink}
               fontWeight="semibold"
               to="/contacto"
-              _hover={{ color: '#BE3969' }}
+              _hover={{ color: 'brand.500' }}
             >
               CONTACTO
             </Link>
@@ -111,14 +111,14 @@ export const Header = () => {
                 <Link
                   as={NavLink}
                   to="/iniciar-sesion"
-                  _hover={{ color: '#BE3969' }}
+                  _hover={{ color: 'brand.500' }}
                 >
                   Iniciar Sesión
                 </Link>
               </Button>
             ) : (
               <Menu>
-                <MenuButton as={Button}>
+                <MenuButton as={Button} _hover={{ color: 'brand.500' }}>
                   <FaUserAlt size={15} />
                 </MenuButton>
                 <Portal>
@@ -136,7 +136,7 @@ export const Header = () => {
           </Show>
           <Box position="relative">
             <IconButton
-              _hover={{ color: '#BE3969' }}
+              _hover={{ color: 'brand.500' }}
               icon={<BsBagHeart size={20} />}
               onClick={onOpen}
             />
@@ -147,7 +147,7 @@ export const Header = () => {
                 right="-2"
                 borderRadius="full"
                 color="white"
-                bg="#BE3969"
+                bg="brand.500"
                 w="20px"
                 h="20px"
                 display="flex"

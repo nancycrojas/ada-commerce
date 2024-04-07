@@ -105,12 +105,12 @@ export const Login = () => {
             as={NavLink}
             fontWeight="semibold"
             to="/"
-            _hover={{ color: '#BE3969' }}
+            _hover={{ color: 'brand.500' }}
           >
             Volver
           </Button>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Heading as="h1" mb={4} color="#BE3969" textAlign="center">
+            <Heading as="h1" mb={4} color="brand.500" textAlign="center">
               Iniciar Sesión
             </Heading>
             <Button
@@ -190,7 +190,7 @@ export const Login = () => {
                   as={NavLink}
                   fontWeight="semibold"
                   to="/registro"
-                  _hover={{ color: '#BE3969' }}
+                  _hover={{ color: 'brand.500' }}
                 >
                   Regístrate
                 </Link>
@@ -199,7 +199,7 @@ export const Login = () => {
           </form>
         </Box>
       </Flex>
-      <Box bg="gray.200" display={{ base: 'none', md: 'block' }} />
+      <Box bg="background" display={{ base: 'none', md: 'block' }} />
     </SimpleGrid>
   )
 }

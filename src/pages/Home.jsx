@@ -54,7 +54,7 @@ export const Home = () => {
           md: '40px 20px 40px 120px',
           lg: '40px 90px 40px 160px ',
         }}
-        bg="#E8E8E6"
+        bg="background"
         minH={400}
       >
         <Box>
@@ -62,7 +62,7 @@ export const Home = () => {
             className="animate__animated animate__slideInLeft"
             as="h1"
             fontWeight="normal"
-            color="#BE3969"
+            color="brand.500"
             size={{ xl: 'lg', sm: 'lg' }}
           >
             <b>PROYECTO FINAL ADAITW</b>, UN ECOMMERCE PARA APRENDER Y APLICAR{' '}
@@ -74,7 +74,7 @@ export const Home = () => {
             href="https://adaitw.org/"
             target="_blank"
             rel="noopener noreferrer"
-            colorScheme="pink"
+            colorScheme="brand"
             variant="outline"
             border="2px"
             borderRadius="50px"
@@ -95,7 +95,7 @@ export const Home = () => {
           {showLogo && (
             <Image
               className="animate__animated animate__fadeIn"
-              src="/src/assets/icon.png"
+              src="/logo-react.png"
               alt="Logo de React"
               position="absolute"
               top="0"

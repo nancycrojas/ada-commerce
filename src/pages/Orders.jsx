@@ -102,7 +102,7 @@ export const Orders = () => {
                 </CardBody>
                 <CardFooter>
                   <Button
-                    bg="#BE3969"
+                    bg="brand.500"
                     color="white"
                     _hover={{
                       boxShadow: 'lg',

@@ -9,7 +9,7 @@ export const IsLoading = () => {
       gap={2}
       h="100vh"
     >
-      <Heading color="#BE3969" size="lg">
+      <Heading color="brand.500" size="lg">
         Cargando...
       </Heading>
       <Spinner
