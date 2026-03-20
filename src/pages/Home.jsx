@@ -89,7 +89,7 @@ export const Home = () => {
           <Image
             className="animate__animated animate__slideInRight"
             w={{ base: '340px', md: '640px' }}
-            src="https://firebasestorage.googleapis.com/v0/b/ada-commerce.appspot.com/o/home.png?alt=media&token=b65c8096-649f-4a88-8021-4f05148ec409&_gl=1*p87ftk*_ga*ODgwODUwMTE3LjE2ODM3NTczMDA.*_ga_CW55HF8NVT*MTY4NTg3NTEyMy43MC4xLjE2ODU4NzU5MjkuMC4wLjA."
+            src="https://res.cloudinary.com/deqkol58i/image/upload/v1773979027/home_jrz9an.png"
             alt="persona comprando"
           />
           {showLogo && (
